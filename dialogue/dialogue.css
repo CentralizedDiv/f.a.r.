@@ -1,0 +1,6 @@
+.dialogue {
+  margin-left: var(--oneInch);
+  max-width: calc(var(--oneInch) * 3.5);
+
+  outline: none;
+}

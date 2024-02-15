@@ -1,0 +1,7 @@
+.character {
+  margin-top: calc(var(--baseSize));
+  margin-left: calc(var(--oneInch) * 2);
+
+  outline: none;
+  text-transform: uppercase;
+}

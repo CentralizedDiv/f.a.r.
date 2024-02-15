@@ -1,0 +1,7 @@
+.transition {
+  text-align: right;
+  margin: var(--baseSize) 0;
+
+  outline: none;
+  text-transform: uppercase;
+}

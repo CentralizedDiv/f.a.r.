@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>contenteditable</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./page/page.css" />
+    <link rel="stylesheet" href="./scene/scene.css" />
+    <link rel="stylesheet" href="./action/action.css" />
+    <link rel="stylesheet" href="./character/character.css" />
+    <link rel="stylesheet" href="./dialogue/dialogue.css" />
+    <link rel="stylesheet" href="./transition/transition.css" />
+    <link rel="stylesheet" href="./parenthetical/parenthetical.css" />
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+  </head>
+  <body>
+    <header>
+      <button id="download-pdf">Download PDF</button>
+      <div id="actions">
+        <button id="action-scene">Cena</button>
+        <button id="action-action">Ação</button>
+        <button id="action-character">Personagem</button>
+        <button id="action-dialogue">Diálogo</button>
+        <button id="action-parenthetical">Instrução</button>
+        <button id="action-transition">Transição</button>
+      </div>
+    </header>
+    <div class="scroll-container">
+      <div id="pages-container">
+        <div class="title-page-container">
+          <div class="title-page">
+            <div id="title">
+              <span>"</span>
+              <span contenteditable="true" id="title-content">O TÍTULO</span>
+              <span>"</span>
+            </div>
+            <div>Escrito por</div>
+            <div id="author" contenteditable="true">AUTOR</div>
+            <div id="contact">
+              <div id="contact-name" contenteditable="true">Name</div>
+              <div id="contact-email" contenteditable="true">Email</div>
+              <div id="contact-phone" contenteditable="true">Phone</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/html2canvas@latest/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="common.js"></script>
+    <script src="page/page.js"></script>
+    <script src="scene/scene.js"></script>
+    <script src="action/action.js"></script>
+    <script src="character/character.js"></script>
+    <script src="dialogue/dialogue.js"></script>
+    <script src="transition/transition.js"></script>
+    <script src="parenthetical/parenthetical.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
