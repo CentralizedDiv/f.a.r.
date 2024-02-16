@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>contenteditable</title>
+    <title>F.A.R.</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./page/page.css" />
     <link rel="stylesheet" href="./scene/scene.css" />
@@ -17,14 +17,33 @@
   </head>
   <body>
     <header>
-      <button id="download-pdf">Download PDF</button>
+      <div id="save-and-download">
+        <button id="save">Salvar roteiro</button>
+        <button id="download-pdf">Download PDF</button>
+        <select name="scripts" id="scripts"></select>
+      </div>
       <div id="actions">
-        <button id="action-scene">Cena</button>
-        <button id="action-action">Ação</button>
-        <button id="action-character">Personagem</button>
-        <button id="action-dialogue">Diálogo</button>
-        <button id="action-parenthetical">Instrução</button>
-        <button id="action-transition">Transição</button>
+        <button id="action-scene">
+          Cena
+          <span>Ctrl + C</span>
+        </button>
+        <button id="action-action">
+          Ação
+          <span>Ctrl + A</span>
+        </button>
+        <button id="action-character">
+          Personagem
+          <span>Ctrl + P</span>
+        </button>
+        <button id="action-dialogue">
+          Diálogo
+          <span>Ctrl + D</span>
+        </button>
+        <button id="action-parenthetical">
+          Instrução
+          <span>Ctrl + I</span>
+        </button>
+        <button id="action-transition">Transição <span>Ctrl + T</span></button>
       </div>
     </header>
     <div class="scroll-container">

@@ -37,12 +37,30 @@ header {
   overflow: auto;
 }
 
+#actions,
+#save-and-download {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--baseSize) / 2);
+}
+
+#actions button span {
+  font-size: 8pt;
+  opacity: 0.5;
+}
+
 #actions button,
-#download-pdf {
+#download-pdf,
+#save {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   border: none;
   outline: none;
-  border-radius: 2px;
-  padding: 2px 8px;
+  border-radius: 4px;
+  padding: 3px 8px;
   font-family: "Courier New", Courier, monospace;
   font-size: 12pt;
   line-height: 12pt;
@@ -51,7 +69,8 @@ header {
 }
 
 #actions button:hover,
-#download-pdf:hover {
+#download-pdf:hover,
+#save:hover {
   background-color: #d5d5d5;
 }
 

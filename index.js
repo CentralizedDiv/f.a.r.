@@ -70,8 +70,9 @@ const validBlocks = [
 const setCurrentBlock = () => {
   const anchorNode = window.getSelection().anchorNode;
   const $currentElement =
-    anchorNode.nodeType === 3 ? anchorNode.parentElement : anchorNode;
+    anchorNode?.nodeType === 3 ? anchorNode.parentElement : anchorNode;
   if (
+    $currentElement &&
     validBlocks.some((className) =>
       $currentElement.classList.contains(className)
     )
@@ -94,103 +95,152 @@ const setCurrentBlock = () => {
   }
 };
 
-(function () {
-  const validCtrlKeys = ["KeyS", "KeyA", "KeyC", "KeyD", "KeyT", "KeyP"];
-  const observer = new MutationObserver((mutationList) => {
-    mutationList?.[0]?.addedNodes.forEach((node) =>
-      resizeObserver.observe(node)
-    );
-  });
+const save = () => {
+  if (state.currentScriptName) {
+    setTimeout(() => {
+      const savedScripts = JSON.parse(localStorage.getItem("scripts") ?? "{}");
+      localStorage.setItem(
+        "scripts",
+        JSON.stringify({
+          ...savedScripts,
+          [state.currentScriptName]:
+            document.getElementById("pages-container")?.innerHTML,
+        })
+      );
+    });
+  }
+};
 
-  const resizeObserver = new ResizeObserver((entries) => {
-    const target = entries?.[0]?.target;
-    const page = target?.parentElement;
-    if (page) {
-      const $currentPage = page;
-      const currentPageNumber = Number($currentPage.dataset.pageNumber);
+const fillScriptSelector = () => {
+  setTimeout(() => {
+    const savedScripts = JSON.parse(localStorage.getItem("scripts") ?? "{}");
+    const select = document.getElementById("scripts");
+    if (select) {
+      select.innerHTML = "";
 
-      const isLastPage = currentPageNumber === state.pages.length;
-      const shouldGoToNewPage =
-        $currentPage.scrollHeight - $currentPage.clientHeight > 16;
+      Object.keys(savedScripts).forEach((scriptName) => {
+        const option = document.createElement("option");
+        option.value = scriptName;
+        option.innerText = scriptName;
+        select.append(option);
+      });
 
-      if (shouldGoToNewPage) {
-        let $nextPageBlock;
-        const lastChar = target.innerText.slice(-1);
-
-        if (isLastPage) {
-          const $newPage = createPage(state.pageNumber);
-          state.pageNumber++;
-
-          state.pages.push($newPage);
-
-          observer.observe($newPage, { childList: true });
-        }
-        const $nextPage = state.pages[currentPageNumber];
-        const validBlocks = [
-          "action",
-          "character",
-          "dialogue",
-          "parenthetical",
-          "scene",
-          "transition",
-        ];
-        $nextPageBlock = Array.from(
-          state.pages[currentPageNumber].children
-        ).find((block) =>
-          validBlocks.some((className) => block.classList.contains(className))
-        );
-
-        if (!$nextPageBlock) {
-          $nextPageBlock = createActionAndAddListener($nextPage, true);
-        }
-
-        $nextPageBlock.innerText = lastChar + $nextPageBlock.innerText;
-        $nextPageBlock.focus?.();
-
-        // Run after the current call stack because we're changing innerText above
-        setTimeout(() => {
-          const range = document.createRange();
-          range.setStart($nextPageBlock.firstChild, 1);
-          range.collapse(true);
-
-          const sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-
-          target.innerText = target.innerText.substr(
-            0,
-            target.innerText.length - 1
-          );
-        });
-      }
+      const option = document.createElement("option");
+      option.value = "__NEW__";
+      option.innerText = "Novo roteiro";
+      select.append(option);
+      select.value = state.currentScriptName;
     }
   });
+};
 
-  const savedHTMLState = localStorage.getItem("state");
-  if (savedHTMLState) {
-    const $container = document.getElementById("pages-container");
-    $container.innerHTML = savedHTMLState;
+const loadScript = (html) => {
+  const $container = document.getElementById("pages-container");
+  $container.innerHTML = html;
 
-    const pages = Array.from(document.getElementsByClassName("page"));
-    state.pageNumber = pages.length + 1;
-    pages.forEach((page) => {
-      state.pages.push(page);
-      observer.observe(page, { childList: true });
-    });
+  const pages = Array.from(document.getElementsByClassName("page"));
+  state.pageNumber = pages.length + 1;
+  pages.forEach((page) => {
+    state.pages.push(page);
+    observer.observe(page, { childList: true });
+  });
 
-    state.sceneNumber = document.getElementsByClassName("scene").length + 1;
+  state.sceneNumber = document.getElementsByClassName("scene").length + 1;
 
-    Array.from(
-      document.querySelectorAll(
-        validBlocks.map((className) => `.${className}`).join(",")
-      )
-    ).forEach((block) => resizeObserver.observe(block));
-  } else {
+  Array.from(
+    document.querySelectorAll(
+      validBlocks.map((className) => `.${className}`).join(",")
+    )
+  ).forEach((block) => resizeObserver.observe(block));
+};
+
+const validCtrlKeys = ["KeyC", "KeyA", "KeyP", "KeyD", "KeyT", "KeyI"];
+const observer = new MutationObserver((mutationList) => {
+  mutationList?.[0]?.addedNodes.forEach((node) => resizeObserver.observe(node));
+});
+const resizeObserver = new ResizeObserver((entries) => {
+  const target = entries?.[0]?.target;
+  const page = target?.parentElement;
+  if (page) {
+    const $currentPage = page;
+    const currentPageNumber = Number($currentPage.dataset.pageNumber);
+
+    const isLastPage = currentPageNumber === state.pages.length;
+    const shouldGoToNewPage =
+      $currentPage.scrollHeight - $currentPage.clientHeight > 16;
+
+    if (shouldGoToNewPage) {
+      let $nextPageBlock;
+      const lastChar = target.innerText.slice(-1);
+
+      if (isLastPage) {
+        const $newPage = createPage(state.pageNumber);
+        state.pageNumber++;
+
+        state.pages.push($newPage);
+
+        observer.observe($newPage, { childList: true });
+      }
+      const $nextPage = state.pages[currentPageNumber];
+      const validBlocks = [
+        "action",
+        "character",
+        "dialogue",
+        "parenthetical",
+        "scene",
+        "transition",
+      ];
+      $nextPageBlock = Array.from(state.pages[currentPageNumber].children).find(
+        (block) =>
+          validBlocks.some((className) => block.classList.contains(className))
+      );
+
+      if (!$nextPageBlock) {
+        $nextPageBlock = createActionAndAddListener($nextPage, true);
+      }
+
+      $nextPageBlock.innerText = lastChar + $nextPageBlock.innerText;
+      $nextPageBlock.focus?.();
+
+      // Run after the current call stack because we're changing innerText above
+      setTimeout(() => {
+        const range = document.createRange();
+        range.setStart($nextPageBlock.firstChild, 1);
+        range.collapse(true);
+
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        target.innerText = target.innerText.substr(
+          0,
+          target.innerText.length - 1
+        );
+      });
+    }
+  }
+});
+(function () {
+  const savedScripts = localStorage.getItem("scripts");
+  if (!savedScripts) {
+    const scriptName = prompt("Nome do roteiro");
     state.pages.push(createPage(state.pageNumber));
     state.pageNumber++;
 
     createSceneAndAddListener(state.pages[0], true);
     observer.observe(state.pages[0], { childList: true });
+    state.currentScriptName = scriptName;
+    const title = document.getElementById("title-content");
+    if (title) {
+      title.innerText = scriptName;
+    }
+    save();
+
+    fillScriptSelector();
+  } else {
+    fillScriptSelector();
+    state.currentScriptName = Object.keys(JSON.parse(savedScripts))[0];
+    loadScript(Object.values(JSON.parse(savedScripts))[0]);
   }
 
   document.addEventListener("keydown", (ev) => {
@@ -208,13 +258,13 @@ const setCurrentBlock = () => {
       }
 
       switch (ev.code) {
-        case "KeyS":
+        case "KeyC":
           createSceneAndAddListener($currentElement);
           break;
         case "KeyA":
           createActionAndAddListener($currentElement);
           break;
-        case "KeyC":
+        case "KeyP":
           createCharacterAndAddListener($currentElement);
           break;
         case "KeyD":
@@ -223,7 +273,7 @@ const setCurrentBlock = () => {
         case "KeyT":
           createTransitionAndAddListener($currentElement);
           break;
-        case "KeyP":
+        case "KeyI":
           createParentheticalAndAddListener($currentElement);
           break;
       }
@@ -338,11 +388,12 @@ const setCurrentBlock = () => {
 
     setTimeout(() => {
       setCurrentBlock();
-      localStorage.setItem(
-        "state",
-        document.getElementById("pages-container")?.innerHTML
-      );
+      save();
     });
+  });
+
+  document.getElementById("save")?.addEventListener("click", () => {
+    save();
   });
 
   document.getElementById("download-pdf")?.addEventListener("click", () => {
@@ -409,5 +460,42 @@ const setCurrentBlock = () => {
 
   document.addEventListener("click", () => {
     setCurrentBlock();
+  });
+
+  document.getElementById("scripts").addEventListener("change", (ev) => {
+    const scripts = JSON.parse(localStorage.getItem("scripts") ?? "{}");
+    const scriptName = ev.target?.value;
+    if (scriptName === "__NEW__") {
+      Array.from(document.getElementsByClassName("page-container")).forEach(
+        (page) => page.remove()
+      );
+      setTimeout(() => {
+        const scriptName = prompt("Nome do roteiro");
+        state = {
+          ...state,
+          pages: [],
+          pageNumber: 1,
+          sceneNumber: 1,
+        };
+        state.pages.push(createPage(state.pageNumber));
+        state.pageNumber++;
+
+        createSceneAndAddListener(state.pages[0], true);
+        observer.observe(state.pages[0], { childList: true });
+        state.currentScriptName = scriptName;
+        const title = document.getElementById("title-content");
+        if (title) {
+          title.innerText = scriptName;
+        }
+        save();
+        fillScriptSelector();
+      });
+    } else {
+      const script = scripts?.[scriptName];
+      if (script) {
+        state.currentScriptName = scriptName;
+        loadScript(script);
+      }
+    }
   });
 })();
