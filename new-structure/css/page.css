@@ -1,0 +1,36 @@
+#pages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: var(--pageWidth);
+  padding: calc(var(--baseSize) * 2);
+}
+#page-container {
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  width: var(--pageWidth);
+  min-height: var(--pageHeight);
+}
+#page-container + #page-container {
+  margin-top: calc(var(--baseSize) * 2);
+}
+#page {
+  word-break: break-word;
+  flex: 1;
+  position: relative;
+  outline: none;
+
+  margin: var(--oneInch) var(--oneInch) var(--oneInch)
+    calc(var(--oneInch) * 1.5);
+}
+.page-number-line {
+  position: absolute;
+  border-bottom: 1px dashed #777777;
+  color: #777777;
+  right: 0;
+  transform: translate(50%, -100%);
+  padding: 0 0 4pt var(--oneInch);
+}

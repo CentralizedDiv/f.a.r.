@@ -1,6 +1,6 @@
 .transition {
   text-align: right;
-  margin: var(--baseSize) 0;
+  margin-top: var(--baseSize);
 
   outline: none;
   text-transform: uppercase;

@@ -39,6 +39,9 @@
 .page-number + div {
   margin-top: 0;
 }
+.title-page-container {
+  margin-bottom: var(--baseSize);
+}
 
 .title-page-container + .page-container .page-number {
   display: none;

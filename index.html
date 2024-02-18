@@ -6,44 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>F.A.R.</title>
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./page/page.css" />
-    <link rel="stylesheet" href="./scene/scene.css" />
-    <link rel="stylesheet" href="./action/action.css" />
-    <link rel="stylesheet" href="./character/character.css" />
-    <link rel="stylesheet" href="./dialogue/dialogue.css" />
-    <link rel="stylesheet" href="./transition/transition.css" />
-    <link rel="stylesheet" href="./parenthetical/parenthetical.css" />
+    <link rel="stylesheet" href="./new-structure/css/page.css" />
+    <link rel="stylesheet" href="./new-structure/css/page-2.css" />
+    <link rel="stylesheet" href="./new-structure/css/scene.css" />
+    <link rel="stylesheet" href="./new-structure/css/action.css" />
+    <link rel="stylesheet" href="./new-structure/css/character.css" />
+    <link rel="stylesheet" href="./new-structure/css/dialogue.css" />
+    <link rel="stylesheet" href="./new-structure/css/transition.css" />
+    <link rel="stylesheet" href="./new-structure/css/parenthetical.css" />
     <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
   </head>
   <body>
     <header>
-      <div id="save-and-download">
-        <button id="save">Salvar roteiro</button>
-        <button id="download-pdf">Download PDF</button>
-        <select name="scripts" id="scripts"></select>
+      <div class="dropdown">
+        <button class="dropbtn">Opções</button>
+        <div class="dropdown-content">
+          <span>Salvar</span>
+          <span>Apagar</span>
+          <span>Duplicar</span>
+          <span>Exportar</span>
+          <span>Importar</span>
+          <span id="download-pdf">Baixar PDF</span>
+        </div>
       </div>
-      <div id="actions">
-        <button id="action-scene">
-          Cena
-          <span>Ctrl + C</span>
-        </button>
-        <button id="action-action">
-          Ação
-          <span>Ctrl + A</span>
-        </button>
-        <button id="action-character">
-          Personagem
-          <span>Ctrl + P</span>
-        </button>
-        <button id="action-dialogue">
-          Diálogo
-          <span>Ctrl + D</span>
-        </button>
-        <button id="action-parenthetical">
-          Instrução
-          <span>Ctrl + I</span>
-        </button>
-        <button id="action-transition">Transição <span>Ctrl + T</span></button>
+      <div class="dropdown">
+        <button class="dropbtn">Novo bloco</button>
+        <div class="dropdown-content" id="new-blocks">
+          <span id="new-scene" class="new-block">
+            Cena
+            <div>Ctrl + C</div>
+          </span>
+          <span id="new-action" class="new-block">
+            Ação
+            <div>Ctrl + A</div>
+          </span>
+          <span id="new-character" class="new-block">
+            Personagem
+            <div>Ctrl + P</div>
+          </span>
+          <span id="new-dialogue" class="new-block">
+            Diálogo
+            <div>Ctrl + D</div>
+          </span>
+          <span id="new-parenthetical" class="new-block">
+            Instrução
+            <div>Ctrl + I</div>
+          </span>
+          <span id="new-transition" class="new-block">
+            Transição
+            <div>Ctrl + T</div>
+          </span>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Roteiros</button>
+        <div class="dropdown-content">
+          <span>Novo roteiro</span>
+        </div>
       </div>
     </header>
     <div class="scroll-container">
@@ -63,11 +82,135 @@
             </div>
           </div>
         </div>
+        <div id="page-container">
+          <div id="page" contenteditable="true" tabindex="0">
+            <div class="action">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              dapibus sapien eget lobortis vulputate. Vivamus suscipit mauris
+              eget semper congue. Morbi tincidunt tempor tellus, quis porttitor
+              nibh pharetra ac. Phasellus vitae purus erat. Nullam sodales
+              ullamcorper tellus, quis tempus urna aliquam vitae. Nam felis
+              tortor, pretium eget quam ut, tincidunt varius tortor. Proin
+              bibendum lobortis turpis, at faucibus mauris placerat in. Etiam et
+              nisl viverra, tincidunt nunc eu, dictum metus. Nunc sed sagittis
+              sapien. Donec malesuada orci viverra metus pulvinar, in bibendum
+              metus viverra. Integer venenatis massa quis nibh condimentum, sed
+              cursus dui congue. Curabitur malesuada vulputate tincidunt. Nulla
+              facilisi. Curabitur sed egestas lacus. Integer non lectus
+              interdum, laoreet ex nec, commodo ex. Etiam rhoncus justo vitae
+              blandit commodo. Integer ac mi mattis, euismod ante at, ornare
+              nibh. Ut ut mi luctus, egestas ipsum vel, scelerisque nisl. Nunc
+              faucibus sapien id volutpat aliquam. Duis tempus massa eu arcu
+              consectetur, quis facilisis est pellentesque. Morbi pharetra,
+              massa sed hendrerit tempus, nisl elit cursus neque, nec dapibus
+              dolor orci sed urna. Phasellus a mattis elit, nec pulvinar ligula.
+              Vivamus erat tellus, dignissim eget metus vitae, hendrerit
+              accumsan felis. Nunc aliquet, tellus ut ultricies viverra, metus
+              lacus tincidunt mi, in fringilla neque nunc vel ligula. Praesent
+              pharetra lorem ut dolor sollicitudin, et finibus felis viverra.
+              Nam tristique eleifend urna ac euismod. Sed feugiat dui ut nibh
+              scelerisque eleifend. Suspendisse ac enim magna. Vestibulum id
+              neque et turpis sodales auctor. Pellentesque habitant morbi
+              tristique senectus et netus et malesuada fames ac turpis egestas.
+              Sed suscipit vulputate nisl et luctus.
+            </div>
+            <div class="action">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              dapibus sapien eget lobortis vulputate. Vivamus suscipit mauris
+              eget semper congue. Morbi tincidunt tempor tellus, quis porttitor
+              nibh pharetra ac. Phasellus vitae purus erat. Nullam sodales
+              ullamcorper tellus, quis tempus urna aliquam vitae. Nam felis
+              tortor, pretium eget quam ut, tincidunt varius tortor. Proin
+              bibendum lobortis turpis, at faucibus mauris placerat in. Etiam et
+              nisl viverra, tincidunt nunc eu, dictum metus. Nunc sed sagittis
+              sapien. Donec malesuada orci viverra metus pulvinar, in bibendum
+              metus viverra. Integer venenatis massa quis nibh condimentum, sed
+              cursus dui congue. Curabitur malesuada vulputate tincidunt. Nulla
+              facilisi. Curabitur sed egestas lacus. Integer non lectus
+              interdum, laoreet ex nec, commodo ex. Etiam rhoncus justo vitae
+              blandit commodo. Integer ac mi mattis, euismod ante at, ornare
+              nibh. Ut ut mi luctus, egestas ipsum vel, scelerisque nisl. Nunc
+              faucibus sapien id volutpat aliquam. Duis tempus massa eu arcu
+              consectetur, quis facilisis est pellentesque. Morbi pharetra,
+              massa sed hendrerit tempus, nisl elit cursus neque, nec dapibus
+              dolor orci sed urna. Phasellus a mattis elit, nec pulvinar ligula.
+              Vivamus erat tellus, dignissim eget metus vitae, hendrerit
+              accumsan felis. Nunc aliquet, tellus ut ultricies viverra, metus
+              lacus tincidunt mi, in fringilla neque nunc vel ligula. Praesent
+              pharetra lorem ut dolor sollicitudin, et finibus felis viverra.
+              Nam tristique eleifend urna ac euismod. Sed feugiat dui ut nibh
+              scelerisque eleifend. Suspendisse ac enim magna. Vestibulum id
+              neque et turpis sodales auctor. Pellentesque habitant morbi
+              tristique senectus et netus et malesuada fames ac turpis egestas.
+              Sed suscipit vulputate nisl et luctus.
+            </div>
+            <div class="action">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              dapibus sapien eget lobortis vulputate. Vivamus suscipit mauris
+              eget semper congue. Morbi tincidunt tempor tellus, quis porttitor
+              nibh pharetra ac. Phasellus vitae purus erat. Nullam sodales
+              ullamcorper tellus, quis tempus urna aliquam vitae. Nam felis
+              tortor, pretium eget quam ut, tincidunt varius tortor. Proin
+              bibendum lobortis turpis, at faucibus mauris placerat in. Etiam et
+              nisl viverra, tincidunt nunc eu, dictum metus. Nunc sed sagittis
+              sapien. Donec malesuada orci viverra metus pulvinar, in bibendum
+              metus viverra. Integer venenatis massa quis nibh condimentum, sed
+              cursus dui congue. Curabitur malesuada vulputate tincidunt. Nulla
+              facilisi. Curabitur sed egestas lacus. Integer non lectus
+              interdum, laoreet ex nec, commodo ex. Etiam rhoncus justo vitae
+              blandit commodo. Integer ac mi mattis, euismod ante at, ornare
+              nibh. Ut ut mi luctus, egestas ipsum vel, scelerisque nisl. Nunc
+              faucibus sapien id volutpat aliquam. Duis tempus massa eu arcu
+              consectetur, quis facilisis est pellentesque. Morbi pharetra,
+              massa sed hendrerit tempus, nisl elit cursus neque, nec dapibus
+              dolor orci sed urna. Phasellus a mattis elit, nec pulvinar ligula.
+              Vivamus erat tellus, dignissim eget metus vitae, hendrerit
+              accumsan felis. Nunc aliquet, tellus ut ultricies viverra, metus
+              lacus tincidunt mi, in fringilla neque nunc vel ligula. Praesent
+              pharetra lorem ut dolor sollicitudin, et finibus felis viverra.
+              Nam tristique eleifend urna ac euismod. Sed feugiat dui ut nibh
+              scelerisque eleifend. Suspendisse ac enim magna. Vestibulum id
+              neque et turpis sodales auctor. Pellentesque habitant morbi
+              tristique senectus et netus et malesuada fames ac turpis egestas.
+              Sed suscipit vulputate nisl et luctus.
+            </div>
+            <div class="action">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              dapibus sapien eget lobortis vulputate. Vivamus suscipit mauris
+              eget semper congue. Morbi tincidunt tempor tellus, quis porttitor
+              nibh pharetra ac. Phasellus vitae purus erat. Nullam sodales
+              ullamcorper tellus, quis tempus urna aliquam vitae. Nam felis
+              tortor, pretium eget quam ut, tincidunt varius tortor. Proin
+              bibendum lobortis turpis, at faucibus mauris placerat in. Etiam et
+              nisl viverra, tincidunt nunc eu, dictum metus. Nunc sed sagittis
+              sapien. Donec malesuada orci viverra metus pulvinar, in bibendum
+              metus viverra. Integer venenatis massa quis nibh condimentum, sed
+              cursus dui congue. Curabitur malesuada vulputate tincidunt. Nulla
+              facilisi. Curabitur sed egestas lacus. Integer non lectus
+              interdum, laoreet ex nec, commodo ex. Etiam rhoncus justo vitae
+              blandit commodo. Integer ac mi mattis, euismod ante at, ornare
+              nibh. Ut ut mi luctus, egestas ipsum vel, scelerisque nisl. Nunc
+              faucibus sapien id volutpat aliquam. Duis tempus massa eu arcu
+              consectetur, quis facilisis est pellentesque. Morbi pharetra,
+              massa sed hendrerit tempus, nisl elit cursus neque, nec dapibus
+              dolor orci sed urna. Phasellus a mattis elit, nec pulvinar ligula.
+              Vivamus erat tellus, dignissim eget metus vitae, hendrerit
+              accumsan felis. Nunc aliquet, tellus ut ultricies viverra, metus
+              lacus tincidunt mi, in fringilla neque nunc vel ligula. Praesent
+              pharetra lorem ut dolor sollicitudin, et finibus felis viverra.
+              Nam tristique eleifend urna ac euismod. Sed feugiat dui ut nibh
+              scelerisque eleifend. Suspendisse ac enim magna. Vestibulum id
+              neque et turpis sodales auctor. Pellentesque habitant morbi
+              tristique senectus et netus et malesuada fames ac turpis egestas.
+              Sed suscipit vulputate nisl et luctus.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://unpkg.com/html2canvas@latest/dist/html2canvas.min.js"></script>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="common.js"></script>
+    <!-- <script src="common.js"></script>
     <script src="page/page.js"></script>
     <script src="scene/scene.js"></script>
     <script src="action/action.js"></script>
@@ -75,6 +218,20 @@
     <script src="dialogue/dialogue.js"></script>
     <script src="transition/transition.js"></script>
     <script src="parenthetical/parenthetical.js"></script>
-    <script src="index.js"></script>
+    <script src="index.js"></script> -->
+
+    <script src="new-structure/state.js"></script>
+
+    <!-- Download PDF -->
+    <script src="new-structure/pdf/consts.js"></script>
+    <script src="new-structure/pdf/download-pdf.js"></script>
+    <script src="new-structure/pdf/pdf-renderer.js"></script>
+
+    <!-- Blocks -->
+    <script src="new-structure/blocks/block-renderer.js"></script>
+    <script src="new-structure/blocks/listeners.js"></script>
+
+    <!-- Observers -->
+    <script src="new-structure/observers.js"></script>
   </body>
 </html>
