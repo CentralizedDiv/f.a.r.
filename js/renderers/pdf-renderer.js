@@ -1,6 +1,14 @@
 const defaultOptions = { lineHeightFactor: 1 };
 
-const pdfRenderers = {
+export const oneInchInPt = 12 * 6;
+export const pageWidth = oneInchInPt * 8.5;
+export const pageHeight = oneInchInPt * 11;
+export const marginLeft = oneInchInPt * 1.5;
+export const maxLinesOnPage = 54;
+export const pageWidthWithoutMargins =
+  pageWidth - (marginLeft + oneInchInPt) - 1;
+
+export const pdfRenderers = {
   scene: (doc, blockLine, currentY, sceneNumber) => {
     doc.setFont("Courier", "normal", "bold");
 
@@ -86,7 +94,7 @@ const pdfRenderers = {
   },
 };
 
-const pdfRenderer = (doc, blockType, metadata) => {
+export const pdfRenderer = (doc, blockType, metadata) => {
   switch (blockType) {
     case "scene":
       pdfRenderers.scene(

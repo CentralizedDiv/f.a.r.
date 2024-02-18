@@ -1,4 +1,12 @@
-(() => {
+import {
+  maxLinesOnPage,
+  oneInchInPt,
+  pageWidthWithoutMargins,
+  pdfRenderer,
+  pdfRenderers,
+} from "../renderers/pdf-renderer.js";
+
+export const processAndDownloadPDFOnClick = () => {
   document.getElementById("download-pdf").addEventListener("click", () => {
     const doc = new window.jspdf.jsPDF({
       orientation: "p",
@@ -71,4 +79,4 @@
 
     doc.save("letter2.pdf");
   });
-})();
+};

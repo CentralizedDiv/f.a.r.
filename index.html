@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>F.A.R.</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./new-structure/css/page.css" />
-    <link rel="stylesheet" href="./new-structure/css/page-2.css" />
-    <link rel="stylesheet" href="./new-structure/css/scene.css" />
-    <link rel="stylesheet" href="./new-structure/css/action.css" />
-    <link rel="stylesheet" href="./new-structure/css/character.css" />
-    <link rel="stylesheet" href="./new-structure/css/dialogue.css" />
-    <link rel="stylesheet" href="./new-structure/css/transition.css" />
-    <link rel="stylesheet" href="./new-structure/css/parenthetical.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/dropdown-menu.css" />
+    <link rel="stylesheet" href="./css/blocks.css" />
+    <link rel="stylesheet" href="./css/page.css" />
+
     <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
   </head>
   <body>
@@ -21,7 +17,7 @@
       <div class="dropdown">
         <button class="dropbtn">Opções</button>
         <div class="dropdown-content">
-          <span>Salvar</span>
+          <span>Renomear</span>
           <span>Apagar</span>
           <span>Duplicar</span>
           <span>Exportar</span>
@@ -65,10 +61,10 @@
         </div>
       </div>
     </header>
-    <div class="scroll-container">
+    <div id="scroll-container">
       <div id="pages-container">
-        <div class="title-page-container">
-          <div class="title-page">
+        <div id="title-page-container">
+          <div id="title-page">
             <div id="title">
               <span>"</span>
               <span contenteditable="true" id="title-content">O TÍTULO</span>
@@ -208,30 +204,8 @@
         </div>
       </div>
     </div>
-    <script src="https://unpkg.com/html2canvas@latest/dist/html2canvas.min.js"></script>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <!-- <script src="common.js"></script>
-    <script src="page/page.js"></script>
-    <script src="scene/scene.js"></script>
-    <script src="action/action.js"></script>
-    <script src="character/character.js"></script>
-    <script src="dialogue/dialogue.js"></script>
-    <script src="transition/transition.js"></script>
-    <script src="parenthetical/parenthetical.js"></script>
-    <script src="index.js"></script> -->
 
-    <script src="new-structure/state.js"></script>
-
-    <!-- Download PDF -->
-    <script src="new-structure/pdf/consts.js"></script>
-    <script src="new-structure/pdf/download-pdf.js"></script>
-    <script src="new-structure/pdf/pdf-renderer.js"></script>
-
-    <!-- Blocks -->
-    <script src="new-structure/blocks/block-renderer.js"></script>
-    <script src="new-structure/blocks/listeners.js"></script>
-
-    <!-- Observers -->
-    <script src="new-structure/observers.js"></script>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>

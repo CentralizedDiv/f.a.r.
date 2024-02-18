@@ -1,0 +1,58 @@
+.action,
+.character,
+.dialogue,
+.parenthetical,
+.scene,
+.transition {
+  word-break: break-word;
+  outline: none;
+}
+
+.scene,
+.character,
+.transition {
+  text-transform: uppercase;
+}
+
+* + .action,
+* + .scene,
+.character,
+.transition {
+  margin-top: var(--baseSize);
+}
+
+.character {
+  margin-left: calc(var(--oneInch) * 2);
+}
+
+.dialogue {
+  margin-left: var(--oneInch);
+  max-width: calc(var(--oneInch) * 3.5);
+}
+
+.parenthetical {
+  margin-left: calc(var(--oneInch) * 1.5);
+}
+
+.scene {
+  position: relative;
+  font-weight: bold;
+}
+.scene::before,
+.scene::after {
+  position: absolute;
+  top: 0;
+  width: calc(var(--baseSize) * 2.5);
+  content: attr(data-scene-number);
+}
+.scene::before {
+  right: 100%;
+  text-align: left;
+}
+.scene::after {
+  left: 100%;
+}
+
+.transition {
+  text-align: right;
+}

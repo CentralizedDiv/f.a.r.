@@ -1,9 +1,11 @@
-const customRenderers = {
+import { state } from "../state.js";
+
+const htmlRenderers = {
   scene: ($scene) => {
     $scene.dataset.sceneNumber = state.currentScript.currentSceneNumber;
   },
   parenthetical: ($parenthetical) => {
-    $parenthetical.innerText = `(${$parenthetical.innerText})`;
+    $parenthetical.innerText = `(${$parenthetical.innerText.trim()})`;
 
     // Run after the current call stack because we're changing innerText above
     setTimeout(() => {
@@ -18,7 +20,7 @@ const customRenderers = {
   },
 };
 
-const blockRenderer = (blockType, $currentBlock, replace = false) => {
+export const htmlRenderer = (blockType, $currentBlock, replace = false) => {
   let $block;
 
   if (replace && $currentBlock) {
@@ -39,18 +41,20 @@ const blockRenderer = (blockType, $currentBlock, replace = false) => {
 
   $block.classList.add(blockType);
 
-  if (blockType === "scene") {
-    customRenderers.scene($block);
-  } else if (blockType === "parenthetical") {
-    customRenderers.parenthetical($block);
-  }
   $block.focus?.();
-
   const range = document.createRange();
-  range.selectNodeContents($block);
+  range.selectNodeContents($block.firstChild ?? $block);
   range.collapse(false);
 
   const sel = window.getSelection();
   sel.removeAllRanges();
   sel.addRange(range);
+
+  if (blockType === "scene") {
+    htmlRenderers.scene($block);
+  } else if (blockType === "parenthetical") {
+    htmlRenderers.parenthetical($block);
+  }
+
+  return $block;
 };

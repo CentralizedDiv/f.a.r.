@@ -1,9 +1,0 @@
-.action {
-  word-break: break-word;
-
-  outline: none;
-}
-
-* + .action {
-  margin-top: var(--baseSize);
-}

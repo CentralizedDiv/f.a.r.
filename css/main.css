@@ -1,0 +1,47 @@
+:root {
+  --baseSize: 12pt;
+  --oneInch: calc(var(--baseSize) * 6);
+  --pageWidth: calc(var(--oneInch) * 8.5);
+  --pageHeight: calc(var(--oneInch) * 11);
+}
+
+html {
+  font-family: "Courier New", Courier, monospace;
+
+  background-color: #ebecf0;
+
+  font-size: 12pt;
+  line-height: 12pt;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: var(--baseSize);
+  -webkit-box-shadow: 0px 0px 10px 0px #d1d1d1;
+  -moz-box-shadow: 0px 0px 10px 0px #d1d1d1;
+  box-shadow: 0px 0px 10px 0px #d1d1d1;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#scroll-container {
+  flex: 1;
+  overflow: auto;
+}
+
+.new-block div {
+  font-size: 8pt;
+  opacity: 0.5;
+  pointer-events: none;
+}
